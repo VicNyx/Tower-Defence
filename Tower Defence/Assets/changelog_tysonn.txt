@@ -1,0 +1,3 @@
+@Tysonn J. Smith Change Log
+
+14-Aug-23 {Created basic fps controller with camera controller, WASD movement, jump and double jump. The camera follows player logic.}
