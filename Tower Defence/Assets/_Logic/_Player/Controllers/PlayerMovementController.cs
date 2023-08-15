@@ -8,12 +8,12 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float movementSpeed;
 
     [Header("Jump")]
-    [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpForce; //1.2 is a good place to start
     [SerializeField] private int maxJumps;
     [SerializeField] private int currentJumps;
 
     [Header("Gravity")]
-    [SerializeField] private float fallMultiplier;
+    [SerializeField] private float fallMultiplier; //1.75 matches will with 1.2 jumpForce
 
     [Header("Bools")]
     [SerializeField] private bool isGrounded;
@@ -25,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         currentJumps = maxJumps;
 
+        //check for rigidbody
         if(rb == null)
         {
             Debug.LogError("Rigidbody not attached!");
@@ -55,6 +56,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Movement()
     {
+        //inputs
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -69,7 +71,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         if(currentJumps > 0)
         {
-            //multiplying by jumpForce with 10
+            //multiplying by jumpForce and by 10
             rb.AddForce(Vector3.up * jumpForce * 10f, ForceMode.Impulse);
             currentJumps--;
         }
@@ -78,6 +80,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void GroundCheck() //https://www.reddit.com/r/Unity3D/comments/3c43ua/best_way_to_check_for_ground/
     {
+        //raycast downwards from centre of player transform 
         RaycastHit hit;
         float distance = 1.2f;
         Vector3 dir = new Vector3(0f, -1f);
@@ -94,7 +97,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void FallGravity() //@Omar Santiago - Better Jump in Unity
     {
-        if(rb.velocity.y < .5f)
+        if(!isGrounded)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
         }

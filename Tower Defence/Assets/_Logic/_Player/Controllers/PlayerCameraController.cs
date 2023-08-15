@@ -8,7 +8,11 @@ public class PlayerCameraController : MonoBehaviour
 
     [Header("Camera Properties")]
     [SerializeField] private Transform playerTransform;
+
+    [Range(0.1f, 1f)]
     [SerializeField] private float mouseSensX;
+
+    [Range(0.1f, 1f)]
     [SerializeField] private float mouseSensY;
 
     [Header("Camera Follow")]
@@ -46,7 +50,7 @@ public class PlayerCameraController : MonoBehaviour
         rotationX -= mouseY;
         rotationX = Mathf.Clamp(rotationX, -89f, 89f);
 
-        //rotation of camTarget local rotation
+        //rotation of camPivot local rotation
         camPivot.localRotation = Quaternion.Euler(rotationX, camPivot.localRotation.eulerAngles.y + mouseX, 0f);
 
         //rotate playerTransform left and right
@@ -55,7 +59,7 @@ public class PlayerCameraController : MonoBehaviour
 
     private void HandleCameraFollow() 
     {
-        //lerp camTarget pos towards playerTransform pos
+        //lerp camPivot pos towards camTarget pos
         camPivot.position = Vector3.Lerp(camPivot.position, camTarget.position, lerpAmount * Time.deltaTime);
     }
 }
