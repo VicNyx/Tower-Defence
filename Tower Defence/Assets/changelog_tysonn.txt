@@ -1,3 +1,5 @@
 @Tysonn J. Smith Change Log
 
 14-Aug-23 {Created basic fps controller with camera controller, WASD movement, jump and double jump. The camera follows player logic.}
+
+16-Aug-23 {Altered fps controller, made the mouseSesn options a slider, added a version and fps tracker. Expanded level, added a NavMesh with a test agent to follow the player.}
