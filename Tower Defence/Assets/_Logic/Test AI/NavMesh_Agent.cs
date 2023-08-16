@@ -8,6 +8,7 @@ public class NavMesh_Agent : MonoBehaviour
     [Header("Points")]
     [SerializeField] private GameObject playerTransform; //player
     [SerializeField] private GameObject objectiveTransform; //objective
+    //towers List
 
     [Header("Movement Properties")]
     [SerializeField] private float speedMod;
@@ -19,10 +20,12 @@ public class NavMesh_Agent : MonoBehaviour
     [SerializeField] private bool isPlayerAlive;
     [SerializeField] private bool playerAttack;
     [SerializeField] private bool objectiveAttack;
+    //tower bool
 
     [Header("Distance Tracker")]
     [SerializeField] private float disToPlayer;
     [SerializeField] private float disToObjective;
+    //distance to tower
 
 
     private NavMeshAgent agent;
