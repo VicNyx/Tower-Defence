@@ -1,5 +1,7 @@
 @Tysonn J. Smith Change Log
 
-14-Aug-23 {Created basic fps controller with camera controller, WASD movement, jump and double jump. The camera follows player logic.}
+14-Aug-23 {Created PlayerMovementController.cs with PlayerCameraController.cs, WASD movement, jump and double jump. The camera follows player logic with a lerp to avoid jittering, made a simple level to test with}
 
-16-Aug-23 {Altered fps controller, made the mouseSesn options a slider, added a version and fps tracker. Expanded level, added a NavMesh with a test agent to follow the player.}
+16-Aug-23 {Altered PlayerCameraController.cs, made the mouseSesn for both X and Y a slider in the editor, added UI elements for an application version and frames per second tracker. Expanded level, added a NavMesh with a test agent NavMesh_Agent.cs to follow the player.}
+
+19-Aug-23 {Created a draft object pool for 3 enemy types (Standard Follow Player, Travel to Objective, Travel to Objective faster.) in EnemyObjectPool_Test.cs and created a test spawner ObjectPoolSpawner_Test.cs, Created a UI element to tell you how to spawn said enemies. (tested up to 100 each having 300 on the field with little frame loss.)}
