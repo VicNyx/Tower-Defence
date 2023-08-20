@@ -11,17 +11,17 @@ public class ObjectPoolSpawner_Test : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKey(KeyCode.E))
         {
             SpawnE1();
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKey(KeyCode.R))
         {
             SpawnE2();
         }
 
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKey(KeyCode.F))
         {
             SpawnE3();
         }

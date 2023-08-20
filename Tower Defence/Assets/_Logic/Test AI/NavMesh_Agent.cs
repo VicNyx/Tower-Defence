@@ -22,11 +22,14 @@ public class NavMesh_Agent : MonoBehaviour
     [SerializeField] private bool objectiveAttack;
     //tower bool
 
+    [Header("RayCast Detection")]
+    [SerializeField] private float raycastDistance;
+    [SerializeField] private float avoidDistance;
+
     [Header("Distance Tracker")]
     [SerializeField] private float disToPlayer;
     [SerializeField] private float disToObjective;
     //distance to tower
-
 
     private NavMeshAgent agent;
 
@@ -103,6 +106,18 @@ public class NavMesh_Agent : MonoBehaviour
         {
             //if player not alive, go for the objective
             agent.SetDestination(objectiveTransform.transform.position);
+        }
+
+        //using raycasts to detect objects, causes them to jitter if grouped, but stops them from teleporting
+        if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, raycastDistance))
+        {
+            //calculate new dir to steer away from object
+            Vector3 avoidDir = transform.position - hit.point;
+
+            //apply new dir as moveDir
+            Vector3 moveDir = transform.position + avoidDir.normalized * avoidDistance;
+            agent.SetDestination(moveDir);
+
         }
     }
 
