@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Deletion : MonoBehaviour
 {
-    
-
-
-    void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if (tag == "Deleter")
+        void OnCollisionEnter(Collision collision) 
         {
-            Destroy(gameObject);
+            if (tag == "Deleter")
+            {
+                Destroy(gameObject);
+            }
         }
     }
+
+
+    
 }
