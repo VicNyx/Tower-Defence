@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class LookingAround : MonoBehaviour
+public class TowerMover : MonoBehaviour
 {
-
+    public GameObject tower1prefab;
     public float mouseSense = 100f;
 
-    public Transform playerBody;
-
-    float xRotation = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +20,8 @@ public class LookingAround : MonoBehaviour
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSense * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSense * Time.deltaTime;
+        tower1prefab.transform.position = new Vector3(mouseX, mouseY);
 
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        playerBody.Rotate(Vector3.up * mouseX);
     }
+
 }
