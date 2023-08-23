@@ -109,13 +109,13 @@ public class NavMesh_Agent : MonoBehaviour
     private void StopWithinDistance()
     {
         //stop if within stopping distance to obj
-        if (disToObjective <= stoppingDis)
+        if (disToObjective < stoppingDis)
         {
             agent.isStopped = true;
         }
 
         //stop if within stopping distance to player
-        if (disToPlayer <= stoppingDis)
+        if (disToPlayer < stoppingDis)
         {
             agent.isStopped = true;
         }
