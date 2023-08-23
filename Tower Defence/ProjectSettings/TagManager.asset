@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Objective
   - Deleter
+  - Tower
+  - TowerSpot
+  - Ground
   layers:
   - Default
   - TransparentFX
