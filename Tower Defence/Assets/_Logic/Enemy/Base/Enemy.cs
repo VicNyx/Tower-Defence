@@ -9,13 +9,13 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, ITriggerCheckable
 
     #region Trigger Check Bools
     public bool isAggroed { get; set; }
-    public bool isTooClose { get; set; }
+    public bool isWithinStrikingDistance { get; set; }
     #endregion
 
     #region Movement Floats
-    public float speedMod { get; set; }
-    public float accelerationMod { get; set; }
-    public float angularMod { get; set; }
+    [SerializeField] private float speedMod;
+    [SerializeField] private float accelerationMod;
+    [SerializeField] private float angularMod;
     #endregion
 
     #region Health Floats
@@ -23,20 +23,34 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, ITriggerCheckable
     public float currentHealth { get; set; }
     #endregion
 
+    #region ScriptableObjects Variables
+    [SerializeField] private EnemyIdleSOBase enemyIdleBase;
+    [SerializeField] private EnemyChaseSOBase enemyChaseBase;
+    [SerializeField] private EnemyAttackSOBase enemyAttackBase;
+
+    public EnemyIdleSOBase enemyIdleBaseInstance { get; set; }
+    public EnemyChaseSOBase enemyChaseBaseInstance { get; set; }
+    public EnemyAttackSOBase enemyAttackBaseInstance { get; set; }
+    #endregion
+
     #region State Machine Variables
     public EnemyStateMachine stateMachine { get; set; }
     public EnemyIdleState idleState { get; set; }
     public EnemyChaseState chaseState { get; set; }
-    public EnemyStopState stopState { get; set; }    
+    public EnemyAttackState attackState { get; set; }
     #endregion
 
     void Awake()
     {
+        enemyIdleBaseInstance = Instantiate(enemyIdleBase);
+        enemyChaseBaseInstance = Instantiate(enemyChaseBase);
+        enemyAttackBaseInstance = Instantiate(enemyAttackBase);
+
         stateMachine = new EnemyStateMachine();
 
         idleState = new EnemyIdleState(this, stateMachine);
         chaseState = new EnemyChaseState(this, stateMachine);
-        stopState = new EnemyStopState(this, stateMachine);
+        attackState = new EnemyAttackState(this, stateMachine);
     }
 
     private void Start()
@@ -44,6 +58,10 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, ITriggerCheckable
         currentHealth = maxHealth;
 
         agent = GetComponent<NavMeshAgent>();
+
+        enemyIdleBaseInstance.Initialize(gameObject, this);
+        enemyChaseBaseInstance.Initialize(gameObject, this);
+        enemyAttackBaseInstance.Initialize(gameObject, this);
 
         stateMachine.Initialize(idleState);
     }
@@ -94,9 +112,9 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, ITriggerCheckable
         isAggroed = aggroed;
     }
 
-    public void SetStopStatus(bool tooClose)
+    public void SetStrikingDistanceBool(bool withinStrikingDistance)
     {
-        isTooClose = tooClose;
+        isWithinStrikingDistance = withinStrikingDistance;
     }
 
     #endregion

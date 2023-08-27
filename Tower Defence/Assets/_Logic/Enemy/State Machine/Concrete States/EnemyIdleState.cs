@@ -4,39 +4,28 @@ using UnityEngine;
 
 public class EnemyIdleState : EnemyState
 {
-    private GameObject objectiveTransform;
-    private float disToObjective;
-
     public EnemyIdleState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
-    {
-        objectiveTransform = GameObject.FindGameObjectWithTag("Objective");
+    {        
     }
 
     public override void EnterState()
     {
         base.EnterState();
+
+        enemy.enemyIdleBaseInstance.DoEnterLogic();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        enemy.enemyIdleBaseInstance.DoExitLogic();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
 
-        disToObjective = Vector3.Distance(enemy.transform.position, objectiveTransform.transform.position);
-        enemy.agent.SetDestination(objectiveTransform.transform.position);
-
-        if (enemy.isAggroed)
-        {
-            enemy.stateMachine.ChangeState(enemy.chaseState);
-        }
-
-        if (enemy.isTooClose)
-        {
-            enemy.stateMachine.ChangeState(enemy.stopState);
-        }
+        enemy.enemyIdleBaseInstance.DoFrameUpdateLogic();
     }
 }

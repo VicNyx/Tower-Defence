@@ -7,12 +7,7 @@ public interface IEnemyMovable
 {
     NavMeshAgent agent { get; set; }
 
-    float speedMod { get; set; }
-    float accelerationMod { get; set; }
-    float angularMod { get; set; }
-
     void SetModifiers();
-
     void MoveEnemy(Vector3 velocity);
 
 }

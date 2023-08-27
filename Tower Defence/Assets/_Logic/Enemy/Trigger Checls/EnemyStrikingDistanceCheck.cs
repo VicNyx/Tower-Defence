@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStopCheck : MonoBehaviour
+public class EnemyStrikingDistanceCheck : MonoBehaviour
 {
     public GameObject playerTarget { get; set; }
     public GameObject objectiveTransform { get; set; }
@@ -20,7 +20,7 @@ public class EnemyStopCheck : MonoBehaviour
     {
         if (collision.gameObject == playerTarget || collision.gameObject == objectiveTransform)
         {
-            enemy.SetStopStatus(true);
+            enemy.SetStrikingDistanceBool(true);
         }
     }
 
@@ -28,7 +28,7 @@ public class EnemyStopCheck : MonoBehaviour
     {
         if (collision.gameObject == playerTarget || collision.gameObject == objectiveTransform)
         {
-            enemy.SetStopStatus(false);
+            enemy.SetStrikingDistanceBool(false);
         }
     }
 }

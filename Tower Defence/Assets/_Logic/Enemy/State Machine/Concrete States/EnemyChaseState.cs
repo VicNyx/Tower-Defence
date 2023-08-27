@@ -4,34 +4,28 @@ using UnityEngine;
 
 public class EnemyChaseState : EnemyState
 {
-    private GameObject playerTransform;
-    private float disToPlayer;
-
     public EnemyChaseState(Enemy enemy, EnemyStateMachine enemyStateMachine) : base(enemy, enemyStateMachine)
-    {
-        playerTransform = GameObject.FindGameObjectWithTag("Player");
+    {        
     }
 
     public override void EnterState()
     {
         base.EnterState();
+
+        enemy.enemyChaseBaseInstance.DoEnterLogic();
     }
 
     public override void ExitState()
     {
         base.ExitState();
+
+        enemy.enemyChaseBaseInstance.DoExitLogic();
     }
 
     public override void FrameUpdate()
     {
         base.FrameUpdate();
 
-        disToPlayer = Vector3.Distance(enemy.transform.position, playerTransform.transform.position);
-        enemy.agent.SetDestination(playerTransform.transform.position);
-
-        if (enemy.isTooClose)
-        {
-            enemy.stateMachine.ChangeState(enemy.stopState);
-        }
+        enemy.enemyChaseBaseInstance.DoFrameUpdateLogic();
     }
 }

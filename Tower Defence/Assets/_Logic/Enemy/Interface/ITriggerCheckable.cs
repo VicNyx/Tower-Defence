@@ -5,8 +5,8 @@ using UnityEngine;
 public interface ITriggerCheckable
 {
     bool isAggroed { get; set; }
-    bool isTooClose { get; set; }
+    bool isWithinStrikingDistance { get; set; }
 
     void SetAggroStatus(bool isAggroed);
-    void SetStopStatus(bool tooClose);
+    void SetStrikingDistanceBool(bool withinStrikingDistance);
 }
