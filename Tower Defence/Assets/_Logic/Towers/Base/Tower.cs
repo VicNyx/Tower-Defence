@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour, ITowerTriggerCheckable
 {
+    
+
     #region State Machine Variables
     public TowerStateMachine stateMachine { get; set; }
     public TowerIdleState idleState { get; set; }
@@ -47,6 +49,9 @@ public class Tower : MonoBehaviour, ITowerTriggerCheckable
     {
         stateMachine.currentTowerState.FrameUpdate();
     }
+
+
+
     public void SetAttackRangeBool(bool withinAttackRange)
     {
         isWithinAttackRange = withinAttackRange;

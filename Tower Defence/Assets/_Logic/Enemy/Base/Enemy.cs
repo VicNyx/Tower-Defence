@@ -7,6 +7,9 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, IEnemyTriggerCheckab
 {
     public NavMeshAgent agent { get; set; }
 
+    public enum Armour { Shielded, Armoured, Unarmoured }
+    public Armour armour;
+
     #region Trigger Check Bools
     public bool isAggroed { get; set; }
     public bool isWithinStrikingDistance { get; set; }
@@ -64,6 +67,8 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, IEnemyTriggerCheckab
         enemyAttackBaseInstance.Initialize(gameObject, this);
 
         stateMachine.Initialize(idleState);
+
+        SetModifiers();
     }
 
     private void Update()
@@ -72,6 +77,7 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, IEnemyTriggerCheckab
     }
 
     #region Movement Functions
+
     public void MoveEnemy(Vector3 velocity)
     {
         agent.velocity = velocity;
@@ -79,9 +85,9 @@ public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, IEnemyTriggerCheckab
 
     public void SetModifiers()
     {
-        agent.speed = speedMod; //movement speed
-        agent.acceleration = accelerationMod; //speeding up
-        agent.angularSpeed = angularMod * 1000f; //turning speed
+        agent.speed = speedMod;
+        agent.acceleration = accelerationMod;
+        agent.angularSpeed = angularMod * 1000f;
     }
 
     #endregion
