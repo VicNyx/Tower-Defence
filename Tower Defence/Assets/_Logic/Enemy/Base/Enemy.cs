@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, ITriggerCheckable
+public class Enemy : MonoBehaviour, IDamage, IEnemyMovable, IEnemyTriggerCheckable
 {
     public NavMeshAgent agent { get; set; }
 
