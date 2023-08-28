@@ -10,6 +10,10 @@ public class TestTowerMove : MonoBehaviour
     RaycastHit hit;
     Ray ray;
     GameObject player;
+    TowerPlaceCheck towerCheck;
+
+    GameObject tower;
+    GameObject towerSpot;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +21,9 @@ public class TestTowerMove : MonoBehaviour
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         planeCollider = GameObject.Find("Plane").GetComponent<Collider>();
         player = GameObject.FindWithTag("Player").GetComponent<Collider>().gameObject;
+        towerCheck = GetComponent<TowerPlaceCheck>();
+        tower = GameObject.FindWithTag("Tower").GetComponent<GameObject>();
+        towerSpot = GameObject.FindWithTag("TowerSpot").GetComponent<GameObject>();
     }
 
     // Update is called once per frame
@@ -36,6 +43,14 @@ public class TestTowerMove : MonoBehaviour
             if (hit.collider == planeCollider)
             {
                 transform.position = Vector3.MoveTowards(transform.position, hit.point, Time.deltaTime);
+            }
+            else if (Input.GetButtonDown("Q") && towerCheck.towerCheck)
+            {
+                float towerSpotX = towerSpot.transform.position.x;
+                float towerSpotY = towerSpot.transform.position.y;
+                float towerSpotZ = towerSpot.transform.position.z;
+
+                tower.transform.position = new Vector3(towerSpotX, towerSpotY, towerSpotZ);
             }
         }
 
