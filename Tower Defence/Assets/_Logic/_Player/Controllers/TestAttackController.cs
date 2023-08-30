@@ -8,12 +8,32 @@ public class TestAttackController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float rayDistance = 5f;
 
+    [SerializeField] private bool canAttack;
+
     private void Awake()
     {
         objectPool = FindObjectOfType<ObjectPool>();
+        canAttack = false;
     }
 
     private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            canAttack = !canAttack;
+        }
+
+        if(canAttack)
+        {
+            AttackRay();
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    private void AttackRay()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;

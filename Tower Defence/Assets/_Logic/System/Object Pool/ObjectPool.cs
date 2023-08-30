@@ -13,8 +13,8 @@ public class ObjectPool : MonoBehaviour
     public Queue<GameObject> enemy2Pool = new Queue<GameObject>();
 
     [Header("Queue Sizes")]
-    [SerializeField] public int enemy1Size = 500;
-    [SerializeField] public int enemy2Size = 500;
+    [SerializeField] public int enemy1Size = 160;
+    [SerializeField] public int enemy2Size = 160;
 
     private void Start()
     {
@@ -78,12 +78,12 @@ public class ObjectPool : MonoBehaviour
     }
 }
 
-/* follow this https://onewheelstudio.com/blog/2020/7/15/object-pooling
- * using a queue instead of a list
+/* @Tysonn J. Smith 2023 
  * 
+ * using this tutorial to use queues instead of lists for my object pools 
+ * @Jeremy Wolf
+ * https://onewheelstudio.com/blog/2020/7/15/object-pooling
  * 
- * 
- * 
- * 
+ * went with the Simple Object Pooling solution, thinking we shouldn't need it for a simple project.
  * 
  */

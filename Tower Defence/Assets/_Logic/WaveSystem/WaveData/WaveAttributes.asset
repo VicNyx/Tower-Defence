@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221c9f5f002a3dd4689fd6ec41b840c8, type: 3}
   m_Name: WaveAttributes
   m_EditorClassIdentifier: 
-  timeBetweenWaves: 10
-  maxWaveAmount: 100
+  timeBetweenWaves: 5
+  maxWaveAmount: 80
+  spawnStaggerMin: 3
+  spawnStaggerMax: 6
   minEnemySpawns: 25
   maxEnemySpawns: 50

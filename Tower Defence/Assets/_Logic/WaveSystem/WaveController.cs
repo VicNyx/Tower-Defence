@@ -36,7 +36,7 @@ public class WaveController : MonoBehaviour
         while(currentWave < _waves.MaxWaveAmount)
         {
             yield return new WaitForSeconds(_waves.TimeBetweenWaves);
-            SpawnActualWave();
+            StartCoroutine(SpawnActualWave());
             currentWave++;
         }
 
@@ -49,11 +49,14 @@ public class WaveController : MonoBehaviour
         isWaveActive = false;
     }
 
-    private void SpawnActualWave()
+    private IEnumerator SpawnActualWave()
     {
         //spawning a random amount each time
         int enemy1Count = Random.Range(_waves.MinEnemySpawns, _waves.MaxEnemySpawns + 1);
         int enemy2Count = Random.Range(_waves.MinEnemySpawns, _waves.MaxEnemySpawns + 1);
+
+        //stagger enemy spawns between min and max values
+        float staggerDelay = Random.Range(_waves.SpawnStaggerMin, _waves.SpawnStaggerMax + 1);
 
         for(int i = 0; i < enemy1Count; i++) //grabbing enemy from queue and spawning position with a random effect
         {
@@ -68,6 +71,9 @@ public class WaveController : MonoBehaviour
             enemy2.transform.position = spawnPoint1.position + Random.insideUnitSphere * 2f; ;
             enemy2.SetActive(true);
         }
+
+        //after spawning, stagger enemy spawns
+        yield return new WaitForSeconds(staggerDelay);
     }
 
     private void StartNewWave()
@@ -99,3 +105,9 @@ public class WaveController : MonoBehaviour
         return true;
     }
 }
+
+/* @Tysonn J. Smith
+ * 
+ * 
+ * 
+ */
