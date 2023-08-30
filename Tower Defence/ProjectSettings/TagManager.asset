@@ -9,6 +9,7 @@ TagManager:
   - Tower
   - TowerSpot
   - Ground
+  - TestGround
   layers:
   - Default
   - TransparentFX

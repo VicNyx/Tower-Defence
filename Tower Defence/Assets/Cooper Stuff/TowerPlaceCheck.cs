@@ -10,13 +10,13 @@ public class TowerPlaceCheck : MonoBehaviour
     [SerializeField] public bool towerCheck = false;
     
     GameObject tower;
-    GameObject towerSpot;
+    public GameObject towerSpot;
 
     // Start is called before the first frame update
     void Start()
     {
         tower = GameObject.FindWithTag("Tower").GetComponent<GameObject>();
-        towerSpot = GameObject.FindWithTag("TowerSpot").GetComponent<GameObject>();
+        
     }
 
     // Update is called once per frame
