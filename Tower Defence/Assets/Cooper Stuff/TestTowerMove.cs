@@ -14,6 +14,7 @@ public class TestTowerMove : MonoBehaviour
 
     GameObject tower;
     GameObject towerSpot;
+    Collider playerCol;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,10 @@ public class TestTowerMove : MonoBehaviour
                 tower.transform.position = new Vector3(towerSpotX, towerSpotY, towerSpotZ);
             }
         }
+
+        Vector3 detect = new Vector3(playerZ, playerX, playerY);
+        Physics.OverlapSphere(detect, 5);
+
 
     }
 }
