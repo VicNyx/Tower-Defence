@@ -73,22 +73,10 @@ public class Tower : MonoBehaviour
         GameObject projectileGO = (GameObject)Instantiate(projectilePrefab, firepoint.position, firepoint.rotation);
         Projectile projectile = projectileGO.GetComponent<Projectile>();
 
-        if (damageType == DamageType.Slash)
-        {
-            projectile.SetDamageType(Projectile.DamageType.Slash);
-        }
-        else if (damageType == DamageType.Pierce)
-        {
-            projectile.SetDamageType(Projectile.DamageType.Pierce);
-        }
-        else if (damageType == DamageType.Blunt)
-        {
-            projectile.SetDamageType(Projectile.DamageType.Blunt);
-        }
-        else
-        {
-            projectile.SetDamageType(Projectile.DamageType.None);
-        }
+        if (damageType == DamageType.Slash) projectile.SetDamageType(Projectile.DamageType.Slash);
+        else if (damageType == DamageType.Pierce) projectile.SetDamageType(Projectile.DamageType.Pierce);
+        else if (damageType == DamageType.Blunt) projectile.SetDamageType(Projectile.DamageType.Blunt);
+        else projectile.SetDamageType(Projectile.DamageType.None);
 
         if (projectile != null) projectile.Seek(target);
     }
