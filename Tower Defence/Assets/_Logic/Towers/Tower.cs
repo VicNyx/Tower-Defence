@@ -21,9 +21,6 @@ public class Tower : MonoBehaviour
     private float timer;
 
     public GameObject projectilePrefab;
-    public GameObject slashPrefab;
-    public GameObject piercePrefab;
-    public GameObject bluntPrefab;
     public Transform firepoint;
 
     // Start is called before the first frame update
@@ -65,39 +62,35 @@ public class Tower : MonoBehaviour
         {
             timer = 0f;
 
-            Shoot();
+            Fire();
         }
 
         timer += Time.deltaTime;
-
     }
 
-    void Shoot()
+    void Fire()
     {
+        GameObject projectileGO = (GameObject)Instantiate(projectilePrefab, firepoint.position, firepoint.rotation);
+        Projectile projectile = projectileGO.GetComponent<Projectile>();
+
         if (damageType == DamageType.Slash)
         {
-            GameObject projectileGO = (GameObject)Instantiate(slashPrefab, firepoint.position, firepoint.rotation);
-            Slash projectile = projectileGO.GetComponent<Slash>();
-            if (projectile != null) projectile.Seek(target);
+            projectile.SetDamageType(Projectile.DamageType.Slash);
         }
         else if (damageType == DamageType.Pierce)
         {
-            GameObject projectileGO = (GameObject)Instantiate(piercePrefab, firepoint.position, firepoint.rotation);
-            Pierce projectile = projectileGO.GetComponent<Pierce>();
-            if (projectile != null) projectile.Seek(target);
+            projectile.SetDamageType(Projectile.DamageType.Pierce);
         }
         else if (damageType == DamageType.Blunt)
         {
-            GameObject projectileGO = (GameObject)Instantiate(bluntPrefab, firepoint.position, firepoint.rotation);
-            Blunt projectile = projectileGO.GetComponent<Blunt>();
-            if (projectile != null) projectile.Seek(target);
+            projectile.SetDamageType(Projectile.DamageType.Blunt);
         }
         else
         {
-            GameObject projectileGO = (GameObject)Instantiate(projectilePrefab, firepoint.position, firepoint.rotation);
-            Projectile projectile = projectileGO.GetComponent<Projectile>();
-            if (projectile != null) projectile.Seek(target);
-        }      
+            projectile.SetDamageType(Projectile.DamageType.None);
+        }
+
+        if (projectile != null) projectile.Seek(target);
     }
 
     void OnDrawGizmosSelected()

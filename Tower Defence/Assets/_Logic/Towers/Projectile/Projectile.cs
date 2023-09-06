@@ -2,10 +2,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public enum DamageType
+    {
+        Slash,
+        Blunt,
+        Pierce,
+        None
+    }
+
+    public DamageType damageType;
     private Transform target;
 
     public float speed = 70f;
-
     public int damage = 50;
 
     // Should turn this into a constructor
@@ -41,9 +49,41 @@ public class Projectile : MonoBehaviour
 
         if (e != null)
         {
-            e.Damage(damage);
+            float weakness = Weakness(e);
+            e.Damage(damage * weakness);
         }
         
         Destroy(gameObject);
+    }
+
+    public void SetDamageType(DamageType damageType)
+    {
+        this.damageType = damageType;
+    }
+
+    float Weakness(Enemy e)
+    {
+        float weaknessMultiplier = 1f;
+
+        if (e.armourType == Enemy.ArmourType.Unarmoured)
+        {
+            if (damageType == DamageType.Blunt) weaknessMultiplier = 0.5f;
+            else if (damageType == DamageType.Pierce) weaknessMultiplier = 1f;
+            else if (damageType == DamageType.Slash) weaknessMultiplier = 1.5f;
+        }
+        else if (e.armourType == Enemy.ArmourType.Armoured)
+        {
+            if (damageType == DamageType.Blunt) weaknessMultiplier = 1f;
+            else if (damageType == DamageType.Pierce) weaknessMultiplier = 1.5f;
+            else if (damageType == DamageType.Slash) weaknessMultiplier = 0.5f;
+        }
+        else if (e.armourType == Enemy.ArmourType.Shielded)
+        {
+            if (damageType == DamageType.Blunt) weaknessMultiplier = 1.5f;
+            else if (damageType == DamageType.Pierce) weaknessMultiplier = 0.5f;
+            else if (damageType == DamageType.Slash) weaknessMultiplier = 1f;
+        }
+
+        return (float)weaknessMultiplier;
     }
 }
