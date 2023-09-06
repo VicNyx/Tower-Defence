@@ -17,9 +17,9 @@ public class Projectile : MonoBehaviour
     public int damage = 50;
 
     // Should turn this into a constructor
-    public void Seek(Transform _target)
+    public void Seek(Transform target)
     {
-        target = _target;
+        this.target = target;
     }
 
     // Update is called once per frame
