@@ -2,90 +2,91 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovementController : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] private float movementSpeed;
+    [Header("Data")]
+    [SerializeField] private MovementAttributes _movement;
 
-    [Header("Jump")]
-    [SerializeField] private float jumpForce; //1.2 is a good place to start
-    [SerializeField] private int maxJumps;
+    [Header("Jumping")]
     [SerializeField] private int currentJumps;
-
-    [Header("Gravity")]
-    [SerializeField] private float fallMultiplier; //1.75 matches will with 1.2 jumpForce
 
     [Header("Bools")]
     [SerializeField] private bool isGrounded;
 
-    private Rigidbody rb;
+    private CharacterController cc;
+    private Vector3 velocity;
+    private float currentSpeed;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        currentJumps = maxJumps;
+        cc = GetComponent<CharacterController>();
 
-        //check for rigidbody
-        if(rb == null)
+        if(cc == null)
         {
-            Debug.LogError("Rigidbody not attached!");
+            Debug.LogError("No CharacterController Found!");
         }
+    }
+
+    private void Start()
+    {
+        currentSpeed = _movement.StandardSpeed;
+        currentJumps = _movement.MaxJumps;
     }
 
     private void Update()
     {
+        HandleMovement();
         GroundCheck();
 
-        //if grounded, refresh currentJumps
         if (isGrounded)
         {
-            currentJumps = maxJumps;
+            velocity.y = 0f;
+            currentJumps = _movement.MaxJumps;
         }
 
-        if(Input.GetButtonDown("Jump") && currentJumps > 0)
+        if (Input.GetButtonDown("Jump") && currentJumps > 0)
         {
-            Jump();
+            HandleJump();
+        }
+
+        if (!isGrounded)
+        {
+            FallEffect();
         }
     }
 
-    private void FixedUpdate()
-    {
-        Movement();
-        FallGravity();
-    }
-
-    private void Movement()
+    private void HandleMovement()
     {
         //inputs
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //multiplying movement by movementSpeed and by 10
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * movementSpeed * 10f * Time.fixedDeltaTime;
-        Vector3 newPos = rb.position + rb.transform.TransformDirection(movement);
+        //movement logic
+        Vector3 movementDir = transform.forward * verticalInput + transform.right * horizontalInput;
+        movementDir.Normalize();
 
-        rb.MovePosition(newPos);
+        //apply gravity
+        velocity.y += _movement.Gravity * Time.deltaTime;
+        movementDir += velocity;
+
+        //apply movement
+        cc.Move(movementDir * currentSpeed * Time.deltaTime);
     }
 
-    private void Jump()
+    private void HandleJump()
     {
-        if(currentJumps > 0)
-        {
-            //multiplying by jumpForce and by 10
-            rb.AddForce(Vector3.up * jumpForce * 10f, ForceMode.Impulse);
-            currentJumps--;
-        }
-
+        velocity.y = Mathf.Sqrt(2 * _movement.JumpForce * -_movement.Gravity);
+        currentJumps--;
     }
 
     private void GroundCheck() //https://www.reddit.com/r/Unity3D/comments/3c43ua/best_way_to_check_for_ground/
     {
-        //raycast downwards from centre of player transform 
-        RaycastHit hit;
-        float distance = 1.2f;
-        Vector3 dir = new Vector3(0f, -1f);
+        //changed from raycast to sphere cast to be more consistent 
+        float radius = .2f;
+        Vector3 dir = Vector3.down;
 
-        if(Physics.Raycast(transform.position, dir, out hit, distance))
+        if (Physics.SphereCast(transform.position, radius, dir, out RaycastHit hit, 1f))
         {
             isGrounded = true;
         }
@@ -95,21 +96,8 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void FallGravity() //@Omar Santiago - Better Jump in Unity
+    private void FallEffect()
     {
-        if(!isGrounded)
-        {
-            rb.velocity += Vector3.up * Physics.gravity.y * fallMultiplier * Time.fixedDeltaTime;
-        }
+        cc.Move(Vector3.down * _movement.FallMultiplier * Time.deltaTime);
     }
-
 }
-
-/*@Tysonn J. Smith 2023
- * 
- * for less floaty jumping @Omar Santiago - Better Jump in Unity
- * https://www.youtube.com/watch?v=Os-RX3XCwvU&t=86s
- * 
- * 
- * 
- */
