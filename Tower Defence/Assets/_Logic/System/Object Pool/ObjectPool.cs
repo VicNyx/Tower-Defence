@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    //TODO: re-write for 6 enemies
+
+
     [Header("Prefabs")]
     [SerializeField] private GameObject enemy1Prefab;
     [SerializeField] private GameObject enemy2Prefab;
@@ -16,7 +19,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] public int enemy1Size = 160;
     [SerializeField] public int enemy2Size = 160;
 
-    private void Start()
+    private void Awake()
     {
         //get enemy1Prefab
         for (int i = 0; i < enemy1Size; i++)
@@ -27,7 +30,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         //get enemy2Prefab
-        for (int i = 0;i < enemy2Size; i++)
+        for (int i = 0; i < enemy2Size; i++)
         {
             GameObject enemy2 = Instantiate(enemy2Prefab);
             enemy2Pool.Enqueue(enemy2);

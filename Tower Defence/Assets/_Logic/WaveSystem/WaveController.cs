@@ -9,6 +9,7 @@ public class WaveController : MonoBehaviour
 
     [Header("Spawn Points")]
     [SerializeField] private Transform spawnPoint1;
+    [SerializeField] private Transform spawnPoint2;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject enemy1;
@@ -18,7 +19,7 @@ public class WaveController : MonoBehaviour
     [SerializeField] private bool isWaveActive;
 
     [Header("Wave Trackers")]
-    [SerializeField] private int currentWave = 0;
+    public int currentWave = 0;
 
     private void Update()
     {
@@ -58,17 +59,17 @@ public class WaveController : MonoBehaviour
         //stagger enemy spawns between min and max values
         float staggerDelay = Random.Range(_waves.SpawnStaggerMin, _waves.SpawnStaggerMax + 1);
 
-        for(int i = 0; i < enemy1Count; i++) //grabbing enemy from queue and spawning position with a random effect
+        for(int i = 0; i < enemy1Count; i++) //grabbing enemy from queue and spawning
         {
             GameObject enemy1 = objectPool.GetEnemy1();
-            enemy1.transform.position = spawnPoint1.position + Random.insideUnitSphere * 2f; ;
+            enemy1.transform.position = spawnPoint1.position;
             enemy1.SetActive(true);
         }
 
         for(int i = 0; i < enemy2Count; i++)
         {
             GameObject enemy2 = objectPool.GetEnemy2();
-            enemy2.transform.position = spawnPoint1.position + Random.insideUnitSphere * 2f; ;
+            enemy2.transform.position = spawnPoint2.position;
             enemy2.SetActive(true);
         }
 
