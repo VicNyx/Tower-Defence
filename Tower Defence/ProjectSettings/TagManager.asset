@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Objective
+  - Enemy1
+  - Enemy2
+  - Slash
+  - Blunt
+  - Pierce
+  - Enemy
   layers:
   - Default
   - TransparentFX
