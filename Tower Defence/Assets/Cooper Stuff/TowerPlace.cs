@@ -55,13 +55,10 @@ public class TowerPlace : MonoBehaviour
             {
                 if (TowerSpot.tag == "TowerSpot")
                 {
-                    if (spot.isFilled == false)
-                    {
-                        Instantiate(tower1, TowerSpot.transform.position, Quaternion.identity);
-                    }
-                    
-                    
-                    
+                    Instantiate(tower1, TowerSpot.transform.position, Quaternion.identity);
+
+
+
                 }
             }
             
