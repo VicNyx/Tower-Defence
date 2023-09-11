@@ -71,7 +71,7 @@ public class TowerPlace : MonoBehaviour
         Vector3 towerPlaceLoc = towerPlaceSpot.transform.position;
 
 
-        if (towerGroundChecker.testTowerCheck && spot.isFilled == false)
+        if (towerGroundChecker.testTowerCheck)
         {
             Vector3 PlayerPos = transform.position;
 
@@ -82,7 +82,7 @@ public class TowerPlace : MonoBehaviour
                 if (TowerSpot.tag == "TowerSpot")
                 {
                     Instantiate(tower2, TowerSpot.transform.position, Quaternion.identity);
-                    spot.isFilled = true;
+                    
                 }
             }
         }
@@ -93,7 +93,7 @@ public class TowerPlace : MonoBehaviour
         Vector3 towerSpotLoc = towerSpot.transform.position;
         Vector3 towerPlaceLoc = towerPlaceSpot.transform.position;
 
-        if (towerGroundChecker.testTowerCheck && spot.isFilled == false)
+        if (towerGroundChecker.testTowerCheck)
         {
             Vector3 PlayerPos = transform.position;
 
@@ -104,7 +104,7 @@ public class TowerPlace : MonoBehaviour
                 if (TowerSpot.tag == "TowerSpot")
                 {
                     Instantiate(tower3, TowerSpot.transform.position, Quaternion.identity);
-                    spot.isFilled = true;
+                    
                 }
             }
         }

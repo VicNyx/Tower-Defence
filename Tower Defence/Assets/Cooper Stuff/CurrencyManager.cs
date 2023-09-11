@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +11,9 @@ public class CurrencyManager : MonoBehaviour
     public float Currency;
     public float startCurrency = 1000f;
     GameObject TaxCurrency;
-    public Text money;
+    
+
+    public TMP_Text currencyText;
 
 
 
@@ -17,7 +21,7 @@ public class CurrencyManager : MonoBehaviour
     void Start()
     {
         Currency = startCurrency;
-        money = GameObject.Find("CurrencyText").GetComponent<Text>();
+        currencyText = GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,7 @@ public class CurrencyManager : MonoBehaviour
     public void CurrencyRemoveTower1()
     {
         Currency = Currency - 500f;
+        Currency.ToString((System.IFormatProvider)currencyText);
         
     }
 
