@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class TowerChecker : MonoBehaviour
 {
+    [Header("Tower Bools")]
+    public bool towerOnSpot = false;
+    public bool towerOnTheSpot = false;
 
-    [SerializeField] private bool towerOnSpot = false;
+    [Header("Update Timer")]
+    [SerializeField] private float timer;
 
+    [Header("Player Details")]
+    public float playerTowerRadius = 10;
 
+    [Header("Tower Objects")]
+    public GameObject towerSpotLoc;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -17,18 +27,38 @@ public class TowerChecker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (towerOnSpot == false)
+        timer += Time.deltaTime;
+        if (timer > 0.5)
         {
-            if (collision.gameObject.tag == "Tower")
+            Vector3 PlayerPos = transform.position;
+
+            var TowerSpots = Physics.OverlapSphere(PlayerPos, playerTowerRadius);
+
+            foreach (var TowerSpot in TowerSpots)
             {
-                towerOnSpot = true;
+                if (TowerSpot.tag == "TowerSpot")
+                {
+                    Vector3 TowerSpotPos = towerSpotLoc.transform.position;
+
+                    var Towers = Physics.OverlapSphere(PlayerPos, playerTowerRadius);
+
+                    foreach (var Tower in Towers)
+                    {
+                        if (Tower.tag == "Tower")
+                        {
+                            towerOnSpot = true;
+                        }
+                        break; 
+                    }
+                }
+                break;
             }
+            timer = 0;
         }
     }
+
+    
+
+
 
 }
