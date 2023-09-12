@@ -1278,7 +1278,12 @@ MonoBehaviour:
   TowerLoc: {fileID: 1021368821}
   timer: 0
   radius: 5
---- !u!114 &726206038
+--- !u!4 &726206042 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7439012782528002581, guid: 7ee9ca8de03770b4ea668f126e26975e, type: 3}
+  m_PrefabInstance: {fileID: 2116866407}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &726206046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1287,16 +1292,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 726206035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 395bb0c60dea1414093a5d26ffbab895, type: 3}
+  m_Script: {fileID: 11500000, guid: 346dacc629acad343811efbbd4cf697a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerCheck: 0
-  towerSpot: {fileID: 1021368821}
---- !u!4 &726206042 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7439012782528002581, guid: 7ee9ca8de03770b4ea668f126e26975e, type: 3}
-  m_PrefabInstance: {fileID: 2116866407}
-  m_PrefabAsset: {fileID: 0}
+  tower1: {fileID: 5527872335377480056, guid: 5797c5f9f6d5ed346905b063976d3b04, type: 3}
+  tower2: {fileID: 1266536209570995368, guid: d1e7214406a8f2a4bb7bdb90526a0fda, type: 3}
+  tower3: {fileID: 3208317232054121322, guid: 5e3833d62253e1e44aea2f53b4b1cdbb, type: 3}
+  towerSpot: {fileID: 6423465792200588451, guid: 8c5900f5e9e1ec146b4c41510ba19176, type: 3}
+  towerPlaceSpot: {fileID: 6423465792200588451, guid: 8c5900f5e9e1ec146b4c41510ba19176, type: 3}
+  playerRad: 5
 --- !u!1 &736605713
 GameObject:
   m_ObjectHideFlags: 0
