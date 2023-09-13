@@ -32,7 +32,8 @@ public class CurrencyManager : MonoBehaviour
 
     public void CurrencyAdd()
     {
-
+        currency = currency + 10;
+        currencyTextMesh.text = currency.ToString();
     }
 
     public void CurrencyRemoveTower1()
