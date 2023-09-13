@@ -8,20 +8,20 @@ using UnityEngine.UI;
 public class CurrencyManager : MonoBehaviour
 {
 
-    public float Currency;
-    public float startCurrency = 1000f;
+    public int currency;
+    public int startCurrency = 1000;
     GameObject TaxCurrency;
-    
 
-    public TMP_Text currencyText;
+    private TextMeshProUGUI currencyTextMesh;
+    
 
 
 
     // Start is called before the first frame update
     void Start()
     {
-        Currency = startCurrency;
-        currencyText = GetComponent<TMP_Text>();
+        currencyTextMesh = GetComponent<TextMeshProUGUI>();
+        currency = startCurrency;
     }
 
     // Update is called once per frame
@@ -37,9 +37,24 @@ public class CurrencyManager : MonoBehaviour
 
     public void CurrencyRemoveTower1()
     {
-        Currency = Currency - 500f;
-        Currency.ToString((System.IFormatProvider)currencyText);
+        currency = currency - 500;
+        currencyTextMesh.text = currency.ToString();
         
+        
+    }
+    public void CurrencyRemoveTower2()
+    {
+        currency = currency - 300;
+        currencyTextMesh.text = currency.ToString();
+
+
+    }
+    public void CurrencyRemoveTower3()
+    {
+        currency = currency - 700;
+        currencyTextMesh.text = currency.ToString();
+
+
     }
 
 

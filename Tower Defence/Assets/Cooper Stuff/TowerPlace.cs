@@ -14,7 +14,7 @@ public class TowerPlace : MonoBehaviour
 
     [Header("TowerSpotLocation")]
     public GameObject towerSpot;
-    public GameObject towerPlaceSpot;
+    
 
 
     [Header("Player things")]
@@ -42,7 +42,6 @@ public class TowerPlace : MonoBehaviour
     {
 
         Vector3 towerSpotLoc = towerSpot.transform.position;
-        Vector3 towerPlaceLoc = towerPlaceSpot.transform.position;
 
 
         if (towerGroundChecker.testTowerCheck)
@@ -68,7 +67,7 @@ public class TowerPlace : MonoBehaviour
     {
 
         Vector3 towerSpotLoc = towerSpot.transform.position;
-        Vector3 towerPlaceLoc = towerPlaceSpot.transform.position;
+        
 
 
         if (towerGroundChecker.testTowerCheck)
@@ -91,7 +90,7 @@ public class TowerPlace : MonoBehaviour
     {
 
         Vector3 towerSpotLoc = towerSpot.transform.position;
-        Vector3 towerPlaceLoc = towerPlaceSpot.transform.position;
+        
 
         if (towerGroundChecker.testTowerCheck)
         {
