@@ -11,6 +11,7 @@ TagManager:
   - Blunt
   - Pierce
   - Enemy
+  - WeaponBox
   layers:
   - Default
   - TransparentFX

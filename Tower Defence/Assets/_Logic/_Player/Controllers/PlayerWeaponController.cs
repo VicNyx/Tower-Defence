@@ -7,6 +7,10 @@ public class PlayerWeaponController : MonoBehaviour
     [Header("Data")]
     [SerializeField] private WeaponAttributes _weapon;
 
+    [Header("Swapping Weapons")]
+    [SerializeField] private bool canChange;
+    [SerializeField] private float interactDistance;
+
     public GameObject[] weapons;
 
     private int currentWeaponIndex;
@@ -16,21 +20,14 @@ public class PlayerWeaponController : MonoBehaviour
     {
         anim = weapons[currentWeaponIndex].GetComponent<Animator>();
         SwitchWeapon(0);
+        canChange = true;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if(canChange && Input.GetKeyDown(KeyCode.E))
         {
-            SwitchWeapon(0);
-        }
-        else if(Input.GetKeyDown(KeyCode.O))
-        {
-            SwitchWeapon(1);
-        }
-        else if(Input.GetKeyDown(KeyCode.P))
-        {
-            SwitchWeapon(2);
+            InteractWithBox();
         }
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
@@ -39,7 +36,26 @@ public class PlayerWeaponController : MonoBehaviour
         }
     }
 
-    private void SwitchWeapon(int weaponIndex)
+    private void InteractWithBox()
+    {
+        GameObject[] weaponBoxes = GameObject.FindGameObjectsWithTag("WeaponBox");
+
+        foreach (GameObject weaponBox in weaponBoxes)
+        {
+            float disToBox = Vector3.Distance(transform.position, weaponBox.transform.position);
+
+            if(disToBox <= interactDistance)
+            {
+                int nextWeaponIndex = (currentWeaponIndex + 1) % weapons.Length; //inteli suggested, % weapons.Length.
+                SwitchWeapon(nextWeaponIndex);
+
+                //exit out of loop after interactin with weaponBox
+                break;
+            }
+        }
+    }
+
+    public void SwitchWeapon(int weaponIndex)
     {
         //disable current weapon
         weapons[currentWeaponIndex].SetActive(false);
@@ -50,8 +66,24 @@ public class PlayerWeaponController : MonoBehaviour
         //enable new weapon
         weapons[currentWeaponIndex].SetActive(true);
 
-        //update references to new weapon
+        //update anim reference to new weapon
         anim = weapons[currentWeaponIndex].GetComponent<Animator>();
+
+        canChange = false;
+        Invoke(nameof(EnableSwitching), 0.5f);
+    }
+
+    private void EnableSwitching()
+    {
+        canChange = true;
+    }
+
+    public void DeactivateAllWeapons()
+    {
+        foreach(GameObject weapon in weapons)
+        {
+            weapon.SetActive(false);
+        }
     }
 
     private void PlayerAttack()
