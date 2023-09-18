@@ -11,8 +11,9 @@ public class CurrencyManager : MonoBehaviour
     public int currency;
     public int startCurrency = 1000;
     GameObject TaxCurrency;
+    public int towerOneMin = 500;
 
-    private TextMeshProUGUI currencyTextMesh;
+    public TextMeshProUGUI currencyTextMesh;
     
 
 
@@ -39,8 +40,9 @@ public class CurrencyManager : MonoBehaviour
     {
         currency = currency - 500;
         currencyTextMesh.text = currency.ToString();
-        
-        
+
+
+
     }
     public void CurrencyRemoveTower2()
     {

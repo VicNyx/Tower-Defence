@@ -51,6 +51,10 @@ public class Projectile : MonoBehaviour
         {
             float weakness = Weakness(e);
             e.Damage(damage * weakness);
+            if (e.currentHealth <= 0)
+            {
+                e.Die();
+            }
         }
         
         Destroy(gameObject);

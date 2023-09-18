@@ -21,6 +21,7 @@ public class TowerPlace : MonoBehaviour
     public float playerRad = 5;
 
     TowerSpot spot;
+    CurrencyManager currencyMan;
     
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class TowerPlace : MonoBehaviour
     {
         towerGroundChecker = GetComponent<TestGroundCheckCooper>();
         spot = GetComponent<TowerSpot>();
+        currencyMan = GetComponent<CurrencyManager>();
         
     }
 
@@ -55,6 +57,7 @@ public class TowerPlace : MonoBehaviour
                 if (TowerSpot.tag == "TowerSpot")
                 {
                     Instantiate(tower1, TowerSpot.transform.position, Quaternion.identity);
+
 
 
 

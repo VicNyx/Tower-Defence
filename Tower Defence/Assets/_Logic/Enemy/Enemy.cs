@@ -14,12 +14,14 @@ public class Enemy : MonoBehaviour
     public ArmourType armourType;
 
     public float maxHealth = 100f;
-    private float currentHealth;
+    public float currentHealth;
+    CurrencyManager currencyMan;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        currencyMan = GetComponent<CurrencyManager>();
     }
 
     public void Damage(float damageAmount)
@@ -34,6 +36,9 @@ public class Enemy : MonoBehaviour
 
     public void Die()
     {
+        
         Destroy(gameObject);
+        currencyMan.currency = currencyMan.currency + 10;
+        currencyMan.currencyTextMesh.text = currencyMan.currency.ToString();
     }
 }
