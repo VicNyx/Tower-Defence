@@ -8,6 +8,7 @@ public class TowerSpot : MonoBehaviour
     TowerPlace place;
     public float timer;
     public float towerRad = 5;
+    public GameObject towerOne;
 
 
     // Start is called before the first frame update
@@ -22,13 +23,13 @@ public class TowerSpot : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > 0.5)
         {
-            Vector3 playerPos = transform.position;
+            Vector3 CheckPos = transform.position;
 
-            var towerOnSpotCheck = Physics.OverlapSphere(playerPos, towerRad);
+            var towerOnSpotCheck = Physics.OverlapSphere(CheckPos, towerRad);
 
-            foreach (var towers in towerOnSpotCheck)
+            foreach (var tower in towerOnSpotCheck)
             {
-                if (towers.tag == "Tower")
+                if (tower.gameObject == towerOne)
                 {
                     isFilled = true;
                 }
@@ -45,7 +46,7 @@ public class TowerSpot : MonoBehaviour
 
     public void OnCollision(Collision collision)
     {
-        if (collision.gameObject.tag == "Tower")
+        if (collision.gameObject == towerOne)
         {
             isFilled = true;
         }

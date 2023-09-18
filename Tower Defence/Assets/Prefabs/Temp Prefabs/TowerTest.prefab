@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1496177432110475260}
   m_Layer: 0
   m_Name: TowerTest
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,7 +179,4 @@ MonoBehaviour:
   range: 15
   timeBetweenShots: 1
   projectilePrefab: {fileID: 2533922189092203881, guid: c6bd938cd76d89649b3829287eb154ac, type: 3}
-  slashPrefab: {fileID: 2533922189092203881, guid: 5f6068760c12e2c4a84a771c95fd0cd4, type: 3}
-  piercePrefab: {fileID: 2533922189092203881, guid: 31fe65afdfb1b624695d34fabb67586f, type: 3}
-  bluntPrefab: {fileID: 2533922189092203881, guid: 96cbbd6c1fdbde347a19131fd5e42b55, type: 3}
   firepoint: {fileID: 1496177432047056619}
