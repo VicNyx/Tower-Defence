@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 9169961151982356726}
   - component: {fileID: 9169961151982356721}
   - component: {fileID: 9169961151982356720}
+  - component: {fileID: 4047988909365500098}
   m_Layer: 6
   m_Name: Test_ObjectiveAI
   m_TagString: Enemy2
@@ -177,6 +178,20 @@ MonoBehaviour:
   objectiveAttack: 1
   disToPlayer: 0
   disToObjective: 0
+--- !u!114 &4047988909365500098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9169961151982356723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24bc92da5b0c4b4bafcd6a9afdaf322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armourType: 0
+  maxHealth: 100
 --- !u!1 &9169961152367816358
 GameObject:
   m_ObjectHideFlags: 0

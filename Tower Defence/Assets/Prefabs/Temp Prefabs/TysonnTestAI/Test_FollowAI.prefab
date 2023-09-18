@@ -179,9 +179,10 @@ GameObject:
   - component: {fileID: 857224278280457137}
   - component: {fileID: 857224278280457142}
   - component: {fileID: 857224278280457143}
+  - component: {fileID: 3523184720449036054}
   m_Layer: 6
   m_Name: Test_FollowAI
-  m_TagString: Enemy1
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -261,3 +262,17 @@ MonoBehaviour:
   objectiveAttack: 0
   disToPlayer: 0
   disToObjective: 0
+--- !u!114 &3523184720449036054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857224278280457140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24bc92da5b0c4b4bafcd6a9afdaf322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armourType: 0
+  maxHealth: 100

@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     {
         Armoured,
         Unarmoured,
-        Shielded
+        Shielded,
     }
 
     public ArmourType armourType;
@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        armourType = (ArmourType)Random.Range(0, 2 + 1);
         currentHealth = maxHealth;
     }
 

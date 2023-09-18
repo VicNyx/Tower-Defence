@@ -14,7 +14,14 @@ public class Projectile : MonoBehaviour
     private Transform target;
 
     public float speed = 70f;
-    public int damage = 50;
+    public float damage = 50f;
+    public float aoeRange = 0f;
+
+    public Projectile(Transform target, DamageType damageType)
+    {
+        this.target = target;
+        this.damageType = damageType;
+    }
 
     // Should turn this into a constructor
     public void Seek(Transform target)
