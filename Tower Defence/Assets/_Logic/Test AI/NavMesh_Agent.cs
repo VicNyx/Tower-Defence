@@ -5,6 +5,11 @@ using UnityEngine.AI;
 
 public class NavMesh_Agent : MonoBehaviour
 {
+    [Header("Data")]
+    private ObjectPool _object;
+    private PlayerHealthController _player;
+    [SerializeField] private PlayerHealthController _pcHealth;
+
     [Header("Points")]
     [SerializeField] private GameObject playerTransform; //player
     [SerializeField] private GameObject objectiveTransform; //objective
@@ -17,7 +22,7 @@ public class NavMesh_Agent : MonoBehaviour
     [SerializeField] private float stoppingDis;
 
     [Header("Bools")]
-    [SerializeField] private bool isPlayerAlive;
+    public bool isPlayerAlive; //TODO: make this false on player death, then respawn
     [SerializeField] private bool playerAttack;
     [SerializeField] private bool objectiveAttack;
     //tower bool
@@ -33,6 +38,7 @@ public class NavMesh_Agent : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        _pcHealth = FindObjectOfType<PlayerHealthController>();
 
         //check for gameobject (player) by tag if not found, throw error
         if(GameObject.FindGameObjectWithTag("Player") != null)
@@ -82,6 +88,13 @@ public class NavMesh_Agent : MonoBehaviour
 
     private void FindTarget()
     {
+        if(_pcHealth == null)
+        {
+            return;
+        }
+
+        isPlayerAlive = _pcHealth.isPlayerAlive;
+
         //check if player is alive
         if (isPlayerAlive)
         {

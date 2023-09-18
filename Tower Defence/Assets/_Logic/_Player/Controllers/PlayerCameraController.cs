@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    //notes rotation on the X axis is bugged, stuck in place
 
     [Header("Camera Properties")]
     [SerializeField] private Transform playerTransform;

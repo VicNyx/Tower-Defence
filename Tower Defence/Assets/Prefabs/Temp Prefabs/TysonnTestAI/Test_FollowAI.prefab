@@ -179,9 +179,12 @@ GameObject:
   - component: {fileID: 857224278280457137}
   - component: {fileID: 857224278280457142}
   - component: {fileID: 857224278280457143}
+  - component: {fileID: 5807682961359748967}
+  - component: {fileID: 3005866087045828732}
+  - component: {fileID: 8886118026017345008}
   m_Layer: 6
   m_Name: Test_FollowAI
-  m_TagString: Enemy1
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,14 +253,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08286ef181b223e418efff50a10247fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pcHealth: {fileID: 0}
   playerTransform: {fileID: 0}
   objectiveTransform: {fileID: 0}
   speedMod: 5
   accelerationMod: 4
   angularMod: 1
-  stoppingDis: 15
+  stoppingDis: 0.1
   isPlayerAlive: 1
   playerAttack: 1
   objectiveAttack: 0
   disToPlayer: 0
   disToObjective: 0
+--- !u!114 &5807682961359748967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857224278280457140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24bc92da5b0c4b4bafcd6a9afdaf322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  armourType: 0
+  maxHealth: 100
+--- !u!114 &3005866087045828732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857224278280457140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0a3cac650666d4b99f6467efed08cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _aiDMG: {fileID: 11400000, guid: 8746c37c6f65f964ea572666a0f787d0, type: 2}
+--- !u!54 &8886118026017345008
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857224278280457140}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 116
+  m_CollisionDetection: 0
