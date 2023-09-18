@@ -16,6 +16,7 @@ public class Projectile : MonoBehaviour
     public float speed = 70f;
     public int damage = 50;
 
+
     // Should turn this into a constructor
     public void Seek(Transform _target)
     {
