@@ -32,7 +32,7 @@ public class Tower : MonoBehaviour
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy1");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
@@ -85,4 +85,6 @@ public class Tower : MonoBehaviour
     {
         Gizmos.DrawWireSphere(transform.position, range);
     }
+
+    // Kaeden's Notes: Tower prefab needs a transform for where it will spawn and launch projectiles
 }

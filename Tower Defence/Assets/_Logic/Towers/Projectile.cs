@@ -15,6 +15,8 @@ public class Projectile : MonoBehaviour
 
     public float speed = 70f;
     public int damage = 50;
+    public float areaOfAffect = 0f;
+    // Need to do testing on what would be a good aoe
 
 
     // Should turn this into a constructor
@@ -37,11 +39,24 @@ public class Projectile : MonoBehaviour
 
         if (dir.magnitude <= distancePerFrame)
         {
-            Damage(target);
+            Explode();
             return;
         }
 
         transform.Translate(dir.normalized * distancePerFrame, Space.World);
+    }
+
+    void Explode()
+    {
+        Collider [] colliders = Physics.OverlapSphere(transform.position, areaOfAffect);
+        
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                Damage(collider.transform);
+            }
+        }
     }
 
     void Damage(Transform enemy)
@@ -87,4 +102,10 @@ public class Projectile : MonoBehaviour
 
         return (float)weaknessMultiplier;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, areaOfAffect);
+    }
+    // Kaeden's Notes - Attach this script to a projectile prefab. Also change aoe range.
 }
