@@ -36,4 +36,6 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    // Kaeden's Notes: Can set armour type in editor.
 }

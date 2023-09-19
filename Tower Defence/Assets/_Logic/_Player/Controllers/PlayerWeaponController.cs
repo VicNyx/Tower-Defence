@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PlayerWeaponController : MonoBehaviour
 {
+
+    public enum DamageType
+    {
+        Slash,
+        Blunt,
+        Pierce,
+        None
+    }
+
+    public DamageType damageType;
+
     [Header("Data")]
     [SerializeField] private WeaponAttributes _weapon;
 
@@ -32,7 +43,8 @@ public class PlayerWeaponController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            PlayerAttack();
+            //PlayerAttack();
+            SetAttack();
         }
     }
 
@@ -167,6 +179,81 @@ public class PlayerWeaponController : MonoBehaviour
             }
         }
     }
+
+    // \/\/\/ Edits by Kaeden \/\/\/
+
+    void SetAttack()
+    {
+        // Replaces PlayerAttack();
+        GameObject currentWeapon = weapons[currentWeaponIndex];
+
+        if (currentWeapon.CompareTag("Slash")) damageType = DamageType.Slash;
+        else if (currentWeapon.CompareTag("Blunt")) damageType = DamageType.Blunt;
+        else if (currentWeapon.CompareTag("Pierce")) damageType = DamageType.Pierce;
+
+        Attack();
+    }
+
+    void Attack()
+    {
+        // Combined all forms of attack into one function
+
+        AnimatorTrigger();
+
+        RaycastHit[] hits;
+
+        hits = Physics.RaycastAll(transform.position, transform.forward, _weapon.AttackRange);
+
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.CompareTag("Enemy"))
+            {
+                Enemy _enemy = hit.collider.GetComponent<Enemy>();
+                if (_enemy != null)
+                {
+                    float weakness = Weakness(_enemy);
+                    _enemy.Damage(_weapon.AttackDamage * weakness);
+                    // Change pierce attack damage to attack damage
+                }
+            }
+        }
+    }
+
+    void AnimatorTrigger()
+    {
+        // Changes animation depending on what damage type it is
+
+        if (damageType == DamageType.Blunt) anim.SetTrigger("BluntAttack");
+        else if (damageType == DamageType.Pierce) anim.SetTrigger("PierceAttack");
+        else if (damageType == DamageType.Slash) anim.SetTrigger("SlashAttack");
+    }
+
+    float Weakness(Enemy e)
+    {
+        float weaknessMultiplier = 1f;
+
+        if (e.armourType == Enemy.ArmourType.Unarmoured)
+        {
+            if (damageType == DamageType.Blunt) weaknessMultiplier = 0.5f;
+            else if (damageType == DamageType.Pierce) weaknessMultiplier = 1f;
+            else if (damageType == DamageType.Slash) weaknessMultiplier = 1.5f;
+        }
+        else if (e.armourType == Enemy.ArmourType.Armoured)
+        {
+            if (damageType == DamageType.Blunt) weaknessMultiplier = 1f;
+            else if (damageType == DamageType.Pierce) weaknessMultiplier = 1.5f;
+            else if (damageType == DamageType.Slash) weaknessMultiplier = 0.5f;
+        }
+        else if (e.armourType == Enemy.ArmourType.Shielded)
+        {
+            if (damageType == DamageType.Blunt) weaknessMultiplier = 1.5f;
+            else if (damageType == DamageType.Pierce) weaknessMultiplier = 0.5f;
+            else if (damageType == DamageType.Slash) weaknessMultiplier = 1f;
+        }
+
+        return (float)weaknessMultiplier;
+    }
+    // Kaeden's Notes: This should have the weapons deal damage depending on the type. If it doesn't work comment out line 47 and uncomment line 46
 }
 
 /* @Tysonn J. Smith 2023
