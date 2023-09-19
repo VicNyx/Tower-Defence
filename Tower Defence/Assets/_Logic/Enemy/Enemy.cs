@@ -16,13 +16,14 @@ public class Enemy : MonoBehaviour
     public float maxHealth = 100f;
     private float currentHealth;
 
-    CurrencyManager currencyManager; //Cooper
+    TowerPlace place;
+    
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        currencyManager = GetComponent<CurrencyManager>(); //Cooper
+        place = GetComponent<TowerPlace>();  //Cooper
     }
 
     public void Damage(float damageAmount)
@@ -38,6 +39,6 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
-        currencyManager.CurrencyAdd(); //Cooper
+        
     }
 }

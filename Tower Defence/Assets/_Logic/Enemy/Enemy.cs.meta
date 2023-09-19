@@ -3,7 +3,8 @@ guid: a24bc92da5b0c4b4bafcd6a9afdaf322
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - currencyTextMesh: {fileID: 3923675324395627568, guid: b045e202a49293643a5de2cf5a5dc328, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

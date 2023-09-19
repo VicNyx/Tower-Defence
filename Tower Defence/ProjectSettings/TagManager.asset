@@ -12,6 +12,9 @@ TagManager:
   - Pierce
   - Enemy
   - WeaponBox
+  - TowerSpot
+  - Tower
+  - Test
   layers:
   - Default
   - TransparentFX

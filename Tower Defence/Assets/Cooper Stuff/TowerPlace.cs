@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class TowerPlace : MonoBehaviour
@@ -21,20 +22,36 @@ public class TowerPlace : MonoBehaviour
     public float playerRad = 5;
 
     TowerSpot spot;
-    
+    TowerFill fill;
+    CurrencyManager currencyMan;
+
+    [Header("Currency Things")]
+    public int currency;
+    public int startCurrency = 1000;
+    public TextMeshProUGUI currencyTextMesh;
+
+    Enemy eN;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        currency = startCurrency;
+
         towerGroundChecker = GetComponent<TestGroundCheckCooper>();
+        eN = GetComponent<Enemy>();
         spot = GetComponent<TowerSpot>();
+        fill = GetComponent<TowerFill>();
+        currencyMan = GetComponent<CurrencyManager>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        currencyTextMesh.text = currency.ToString();
         
+
     }
 
 
@@ -52,11 +69,12 @@ public class TowerPlace : MonoBehaviour
 
             foreach (var TowerSpot in TowerSpots)
             {
-                if (TowerSpot.tag == "TowerSpot")
+                if (TowerSpot.tag == "TowerSpot" && currency >= 500)
                 {
+                    
                     Instantiate(tower1, TowerSpot.transform.position, Quaternion.identity);
-
-
+                    currency = currency - 500;
+                    currencyTextMesh.text = currency.ToString();
 
                 }
             }

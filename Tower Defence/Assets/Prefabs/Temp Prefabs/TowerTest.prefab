@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1496177431977508980}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1496177432110475263}
   - component: {fileID: 1496177432110475260}
+  - component: {fileID: 1978754909678372068}
   m_Layer: 0
   m_Name: TowerTest
   m_TagString: Tower
@@ -180,3 +181,18 @@ MonoBehaviour:
   timeBetweenShots: 1
   projectilePrefab: {fileID: 2533922189092203881, guid: c6bd938cd76d89649b3829287eb154ac, type: 3}
   firepoint: {fileID: 1496177432047056619}
+--- !u!114 &1978754909678372068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496177432110475261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39258d1a352182040b81ff0f8b52deb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerFill: 0
+  timer: 0
+  radius: 10

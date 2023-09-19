@@ -13,6 +13,8 @@ public class CurrencyManager : MonoBehaviour
     GameObject TaxCurrency;
 
     private TextMeshProUGUI currencyTextMesh;
+    TestGroundCheckCooper groundCheck;
+    TowerFill fill;
     
 
 
@@ -22,6 +24,8 @@ public class CurrencyManager : MonoBehaviour
     {
         currencyTextMesh = GetComponent<TextMeshProUGUI>();
         currency = startCurrency;
+        groundCheck = GetComponent<TestGroundCheckCooper>();
+        fill = GetComponent<TowerFill>();
     }
 
     // Update is called once per frame
@@ -38,10 +42,11 @@ public class CurrencyManager : MonoBehaviour
 
     public void CurrencyRemoveTower1()
     {
+        
+        
         currency = currency - 500;
         currencyTextMesh.text = currency.ToString();
-        
-        
+
     }
     public void CurrencyRemoveTower2()
     {
