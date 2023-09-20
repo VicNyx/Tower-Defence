@@ -6,7 +6,11 @@ using UnityEngine;
 public class TowerPlace : MonoBehaviour
 {
 
-    TestGroundCheckCooper towerGroundChecker;
+    //This Script was written by Cooper
+
+
+
+    TestGroundCheckCooper towerGroundChecker; //This and Below was Written by Cooper
 
     [Header("Towers")]
     public GameObject tower1;
@@ -34,7 +38,7 @@ public class TowerPlace : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Start() //written by Cooper
     {
         currency = startCurrency;
 
@@ -47,7 +51,7 @@ public class TowerPlace : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //Written by Cooper
     {
         currencyTextMesh.text = currency.ToString();
         
@@ -55,7 +59,7 @@ public class TowerPlace : MonoBehaviour
     }
 
 
-    public void TowerPlacementTower1()
+    public void TowerPlacementTower1() //Written by Cooper
     {
 
         Vector3 towerSpotLoc = towerSpot.transform.position;
@@ -81,7 +85,7 @@ public class TowerPlace : MonoBehaviour
             
         }
     }
-    public void TowerPlacementTower2()
+    public void TowerPlacementTower2() //Written by Cooper
     {
 
         Vector3 towerSpotLoc = towerSpot.transform.position;
@@ -104,7 +108,7 @@ public class TowerPlace : MonoBehaviour
             }
         }
     }
-    public void TowerPlacementTower3()
+    public void TowerPlacementTower3() //Written by Cooper
     {
 
         Vector3 towerSpotLoc = towerSpot.transform.position;

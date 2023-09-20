@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TowerSpot : MonoBehaviour
 {
+    //This Script was Written by Cooper
+
+
+
     public bool isFilled = false;
     TowerPlace place;
     public float timer;
@@ -17,7 +21,7 @@ public class TowerSpot : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //Written by Cooper
     {
         timer += Time.deltaTime;
         if (timer > 0.5)
@@ -43,7 +47,7 @@ public class TowerSpot : MonoBehaviour
         }
     }
 
-    public void OnCollision(Collision collision)
+    public void OnCollision(Collision collision)  //Written by Cooper
     {
         if (collision.gameObject.tag == "Tower")
         {

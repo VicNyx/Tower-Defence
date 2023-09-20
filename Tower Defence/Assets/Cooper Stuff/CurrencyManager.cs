@@ -7,19 +7,21 @@ using UnityEngine.UI;
 public class CurrencyManager : MonoBehaviour
 {
 
-    public int currency;
-    public int startCurrency = 1000;
-    GameObject TaxCurrency;
+    //Script Done By Cooper
 
-    private TextMeshProUGUI currencyTextMesh;
-    TestGroundCheckCooper groundCheck;
-    TowerFill fill;
+    public int currency;  //Cooper
+    public int startCurrency = 1000; //Cooper
+    GameObject TaxCurrency; //Cooper
+
+    private TextMeshProUGUI currencyTextMesh; //Cooper
+    TestGroundCheckCooper groundCheck; //Cooper
+    TowerFill fill; //Cooper
     
 
 
 
     // Start is called before the first frame update
-    void Start()
+    void Start()  //Cooper
     {
         currencyTextMesh = GetComponent<TextMeshProUGUI>();
         currency = startCurrency;
@@ -33,13 +35,13 @@ public class CurrencyManager : MonoBehaviour
         
     }
 
-    public void CurrencyAdd()
+    public void CurrencyAdd() //Cooper
     {
         currency = currency + 10;
         currencyTextMesh.text = currency.ToString();
     }
 
-    public void CurrencyRemoveTower1()
+    public void CurrencyRemoveTower1() //Cooper
     {
         
         
@@ -47,14 +49,14 @@ public class CurrencyManager : MonoBehaviour
         currencyTextMesh.text = currency.ToString();
 
     }
-    public void CurrencyRemoveTower2()
+    public void CurrencyRemoveTower2() //Cooper
     {
         currency = currency - 300;
         currencyTextMesh.text = currency.ToString();
 
 
     }
-    public void CurrencyRemoveTower3()
+    public void CurrencyRemoveTower3() //Cooper
     {
         currency = currency - 700;
         currencyTextMesh.text = currency.ToString();
