@@ -18,7 +18,9 @@ public class Projectile : MonoBehaviour
     public float areaOfAffect = 0f;
     // Need to do testing on what would be a good aoe
 
+    
 
+   
     // Should turn this into a constructor
     public void Seek(Transform _target)
     {
