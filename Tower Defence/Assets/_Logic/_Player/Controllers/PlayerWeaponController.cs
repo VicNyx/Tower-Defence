@@ -43,8 +43,8 @@ public class PlayerWeaponController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            //PlayerAttack();
-            SetAttack();
+            PlayerAttack();
+            //SetAttack();
         }
     }
 

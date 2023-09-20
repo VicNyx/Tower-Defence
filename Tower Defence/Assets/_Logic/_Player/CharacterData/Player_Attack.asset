@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 976214df6ecc38d449f33d1f78dc09d3, type: 3}
   m_Name: Player_Attack
   m_EditorClassIdentifier: 
-  slashAttackDamage: 100
+  slashAttackDamage: 50
   bluntAttackDamage: 100
-  pierceAttackDamage: 100
+  pierceAttackDamage: 25
+  attackDamage: 0
   attackRange: 7

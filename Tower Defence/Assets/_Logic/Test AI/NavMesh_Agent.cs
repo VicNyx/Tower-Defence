@@ -22,7 +22,7 @@ public class NavMesh_Agent : MonoBehaviour
     [SerializeField] private float stoppingDis;
 
     [Header("Bools")]
-    public bool isPlayerAlive; //TODO: make this false on player death, then respawn
+    public bool isPlayerAlive;
     [SerializeField] private bool playerAttack;
     [SerializeField] private bool objectiveAttack;
     //tower bool
@@ -41,7 +41,7 @@ public class NavMesh_Agent : MonoBehaviour
         _pcHealth = FindObjectOfType<PlayerHealthController>();
 
         //check for gameobject (player) by tag if not found, throw error
-        if(GameObject.FindGameObjectWithTag("Player") != null)
+        if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             playerTransform = GameObject.FindGameObjectWithTag("Player");
         }
@@ -70,6 +70,8 @@ public class NavMesh_Agent : MonoBehaviour
             //set modifiers for the agent
             SetModifiers();
         }
+
+        InvokeRepeating(nameof(FindTarget), .5f, .5f);
     }
 
     private void SetModifiers()
@@ -82,12 +84,16 @@ public class NavMesh_Agent : MonoBehaviour
 
     private void Update()
     {
-        FindTarget();
         StopWithinDistance();
     }
 
     private void FindTarget()
     {
+        if(!gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
         if(_pcHealth == null)
         {
             return;
@@ -126,21 +132,22 @@ public class NavMesh_Agent : MonoBehaviour
         {
             agent.isStopped = true;
         }
+        
 
         //stop if within stopping distance to player
-        if (disToPlayer < stoppingDis)
+        else if (disToPlayer < stoppingDis)
         {
             agent.isStopped = true;
         }
 
         //check if outside the stopping distance to obj and keep moving
-        if(disToObjective > stoppingDis)
+        else if(disToObjective > stoppingDis)
         {
             agent.isStopped = false;
         }
 
         //check if outside the stopping distance to player and keep moving
-        if (disToPlayer > stoppingDis)
+        else if (disToPlayer > stoppingDis)
         {
             agent.isStopped = false;
         }
