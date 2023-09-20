@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 3005866087045828732}
   - component: {fileID: 8886118026017345008}
   m_Layer: 6
-  m_Name: Test_FollowAI
+  m_Name: Test_FollowAI_Naked
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
