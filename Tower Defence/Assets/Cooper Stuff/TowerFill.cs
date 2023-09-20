@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TowerFill : MonoBehaviour
 {
+    //This Script was Written by Cooper
+
+
     public bool towerFill = false;
     public float timer;
     public float radius = 10;
@@ -15,7 +18,7 @@ public class TowerFill : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //Written by Cooper
     {
         timer += Time.deltaTime;
         if (timer > 0.5)
@@ -41,7 +44,7 @@ public class TowerFill : MonoBehaviour
         }
     }
 
-    public void OnCollisionStay(Collision collision)
+    public void OnCollisionStay(Collision collision) //Written by Cooper
     {
         if (collision.gameObject.tag == "TowerSpot")
         {

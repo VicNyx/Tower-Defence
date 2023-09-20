@@ -5,7 +5,10 @@ using UnityEngine;
 public class TestGroundCheckCooper : MonoBehaviour
 {
 
-    [Header("TowerSpotBool")]
+    //Script Written by Cooper
+
+
+    [Header("TowerSpotBool")]  //This, and below Written by Cooper
     public bool testTowerCheck = false;
 
     [Header("TowerSpot")]
@@ -23,7 +26,7 @@ public class TestGroundCheckCooper : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //Done By Cooper
     {
         timer += Time.deltaTime;
         if (timer > 0.5)
