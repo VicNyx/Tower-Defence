@@ -81,6 +81,8 @@ public class PlayerWeaponController : MonoBehaviour
         //update anim reference to new weapon
         anim = weapons[currentWeaponIndex].GetComponent<Animator>();
 
+        // Kaeden's Notes: I need to add damageType enum value equals weaponIndex
+
         canChange = false;
         Invoke(nameof(EnableSwitching), 0.5f);
     }
